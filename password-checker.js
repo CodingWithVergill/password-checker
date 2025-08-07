@@ -1,4 +1,14 @@
-function checkStrength() {
+async function execute() {
+  const password = document.getElementById("password").value;
+  const easterEgg = "you know";
+  if (password === easterEgg) trigger();
+  await loading();
+  setTimeout(() => {
+    checkStrength();
+    document.getElementById("result").classList.remove("dots");
+  }, 2000);
+}
+async function checkStrength() {
   const password = document.getElementById("password").value;
   const result = document.getElementById("result");
   const easterEgg = "you know";
@@ -30,7 +40,7 @@ function checkStrength() {
     result.style.color = "darkblue";
   } else if (hasNumber && hasSymbol && hasLower && hasUpper && noRepeat) {
     result.textContent = "Boom baby!🔥🔥";
-    result.style.color = "black";
+    result.style.color = "cyan";
   } else if (hasNumber && hasSymbol) {
     result.textContent = "add more vro🥀";
     result.style.color = "black";
@@ -41,6 +51,14 @@ function checkStrength() {
     result.classList.add("show");
   }, 10);
 }
+async function loading() {
+  const result = document.getElementById("result");
+  result.style.opacity = 1;
+  result.textContent = "Loading";
+  result.classList.add("dots");
+  result.style.color = "black";
+}
+
 document.body.classList.add("normal");
 const lyricsContainer = document.getElementById("lyrics-container");
 const audio = document.getElementById("bg-music");
@@ -126,3 +144,4 @@ function trigger() {
   audio.play();
   showLyric();
 }
+//done
